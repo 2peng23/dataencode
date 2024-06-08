@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Faker\Generator as Faker;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Profile>
@@ -17,18 +18,19 @@ class ProfileFactory extends Factory
     public function definition(): array
     {
         return [
-            'first_name' => fake()->sentence(),
-            'middle_name' => fake()->sentence(),
-            'last_name' => fake()->sentence(),
-            'suffix' => fake()->randomElement(['jr', 'sr', 'III']),
-            'birthdate' => fake()->date(),
-            'birthplace' => fake()->sentence(),
-            'registry_no' => fake()->numberBetween(10000, 99999),
-            'page' => fake()->numberBetween(1000, 9999),
-            'book' => fake()->sentence(),
-            'mother_name' => fake()->sentence(),
-            'father_name' => fake()->sentence(),
-            'is_married' => fake()->randomElement(['yes', 'no']),
+            'first_name' => $this->faker->firstName(),
+            'middle_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'suffix' => $this->faker->randomElement(['Jr.', 'Sr.', 'III']),
+            'birthdate' => $this->faker->date(),
+            'birthplace' => $this->faker->city(),
+            'registry_no' => $this->faker->numberBetween(10000, 99999),
+            'page' => $this->faker->numberBetween(1000, 9999),
+            'book' => $this->faker->word(),
+            'mother_name' => $this->faker->name('female'),
+            'father_name' => $this->faker->name('male'),
+            'is_married' => $this->faker->boolean(),
         ];
     }
 }
+

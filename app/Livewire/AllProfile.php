@@ -3,44 +3,66 @@
 namespace App\Livewire;
 
 use App\Services\ProfileService;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class AllProfile extends Component
 {
     use WithPagination;
-    private $allprofile;
-    private $profileService;
+
     public $searchQuery;
     public $birthYear;
-    public $perPage;
+    public $perPage; // Set default per page
     public $page;
+    public $current_page;
+    protected $profileService;
+    protected $profiles;
     protected $listeners = [
-        'fetchData' => 'fetchData'
+        'search' => 'fetchData'
     ];
 
+    // Inject ProfileService dependency
     public function __construct()
     {
         $this->profileService = new ProfileService();
     }
-    // Fetch profiles in mount method
-    public function mount()
-    {
-        $this->allprofile = $this->profileService->allProfiles($this->searchQuery, $this->birthYear, $this->perPage, $this->page);
-    }
-    // fetch Data
-    public function fetchData()
-    {
-        // Re-fetch profiles with updated filters
-        $this->allprofile = $this->profileService->allProfiles($this->searchQuery, $this->birthYear, $this->perPage,  $this->page);
-        // dd($this->allprofile);
-    }
 
-    // Render method with pagination
+    // Fetch data with applied filters
+    public function fetchData($searchQuery, $birthYear, $perPage, $page = null)
+    {
+        $this->searchQuery = $searchQuery;
+        $this->birthYear = $birthYear;
+        $this->perPage = $perPage;
+        if ($page !== null) {
+            $this->current_page = $page;
+        }
+        $this->profiles = $this->profileService->allProfiles($this->searchQuery, $this->birthYear, $this->perPage, $page);
+        // dd($this->profiles);
+        $this->resetPage(); // Reset pagination after search change
+    }
+    // Handle next page click and fetch data
+    public function gotoPage($pageNo)
+    {
+        $this->fetchData($this->searchQuery, $this->birthYear, $this->perPage, $pageNo);
+    }
+    public function nextPage()
+    {
+        if ($this->current_page >= 1) {
+            $nextpage = $this->current_page + 1;
+        } else {
+            $nextpage = 2;
+        }
+        $this->fetchData($this->searchQuery, $this->birthYear, $this->perPage, $nextpage);
+    }
+    public function previousPage($pageName = 'page')
+    {
+        $prev = $this->current_page - 1;
+        $this->fetchData($this->searchQuery, $this->birthYear, $this->perPage, $prev);
+    }
+    // Render the Livewire component
     public function render()
     {
-        $profiles = $this->allprofile;
+        $profiles = $this->profiles;
         return view('livewire.all-profile', compact('profiles'));
     }
 }

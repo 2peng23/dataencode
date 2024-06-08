@@ -1,16 +1,17 @@
 @extends('layouts.index')
 @section('content')
-    <x-create-profile />
-    @livewire('all-profile')
+    <div>
+        <x-create-profile />
+        <livewire:profile-search />
+        <livewire:all-profile />
+    </div>
 @endsection
 
 @section('scripts')
     <script src="js/create-profile.js"></script>
-    @push('scripts')
-        <script>
-            Livewire.on('load', () => { // Listen for 'load' event
-                window.livewire.emit('fetchData'); // Emit 'fetchData' to component
-            });
-        </script>
-    @endpush
+    <script>
+        $(document).ready(function() {
+            Livewire.dispatch('initSearch');
+        })
+    </script>
 @endsection
