@@ -1,6 +1,6 @@
 <div>
     <div class="d-flex justify-content-end my-3">
-        <button class="btn btn-outline-success" id="create-profile">Add Profile</button>
+        <button class="btn btn-outline-success" wire:click="openModal">Add Profile</button>
     </div>
     <div class="card">
         <div class="card-body">
@@ -24,7 +24,7 @@
                         @php($profiles = isset($profiles) ? $profiles : [])
                         @forelse ($profiles as $profile)
                             <tr>
-                                <td class="text-nowrap">{{ $profile->first_name }} {{ $profile->middle_name }}
+                                <td class="text-nowrap">{{ $profile->first_name }} {{ $profile->middle_name }} {{ $profile->last_name }}
                                     {{ $profile->suffix }}</td>
                                 <td class="text-nowrap">
                                     {{ \Carbon\Carbon::parse($profile->birthdate)->format('F d, Y') }}</td>
@@ -34,14 +34,19 @@
                                 <td>{{ $profile->book }}</td>
                                 <td class="text-nowrap">{{ $profile->mother_name }}</td>
                                 <td class="text-nowrap">{{ $profile->father_name }}</td>
-                                <td class="text-nowrap">{{ $profile->is_married }}</td>
+                                <td class="text-nowrap">
+
+                                    {{ $profile->is_married == 0 ? 'No' : 'Yes'}}
+                                </td>
                                 <td class="d-flex">
-                                    <button value="{{ $profile->id }}" class="btn btn-sm btn-primary"><i
-                                            class="fa fa-eye"></i></button>
-                                    <button value="{{ $profile->id }}" class="btn btn-sm btn-success"><i
-                                            class="fa fa-pencil"></i></button>
-                                    <button value="{{ $profile->id }}" class="btn btn-sm btn-danger"><i
-                                            class="fa fa-trash"></i></button>
+                                    <button class="btn btn-sm btn-primary"><i
+                                            class="fa fa-eye" wire:click="infoProfileModal({{$profile->id}})"></i></button>
+
+                                    <button class="btn btn-sm btn-success"><i
+                                            class="fa fa-pencil" wire:click="openProfileModal({{$profile->id}})"></i></button>
+
+                                    <button class="btn btn-sm btn-danger"><i
+                                            class="fa fa-trash" wire:click="deleteProfile({{$profile->id}})"></i></button>
                                 </td>
                             </tr>
                         @empty

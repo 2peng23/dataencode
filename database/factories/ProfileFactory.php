@@ -29,8 +29,7 @@ class ProfileFactory extends Factory
             'book' => $this->faker->word(),
             'mother_name' => $this->faker->name('female'),
             'father_name' => $this->faker->name('male'),
-            'is_married' => $this->faker->boolean(),
+            'is_married' => $this->faker->numberBetween(0, 1),
         ];
     }
 }
-

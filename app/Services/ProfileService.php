@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Profile;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileService
 {
@@ -29,5 +29,33 @@ class ProfileService
 
         // Apply pagination after building the query
         return $query->paginate($perPage, ['*'], 'page', $page);
+    }
+    public function saveProfile($data, $rules)
+    {
+        // Validate the data
+        $validator = Validator::make($data, $rules);
+
+        // Check if validation fails
+        if ($validator->fails()) {
+            // If validation fails, return all validation errors
+            $errors = $validator->errors()->all();
+            return ['error' => $errors];
+        }
+
+        // If validation passes, proceed to save the profile
+        Profile::create($data);
+        $success = "success";
+        // Return true or any other success indicator if needed
+        return ['success' => $success];
+    }
+    public function viewProfile($id)
+    {
+        $profile = Profile::find($id);
+
+        return $profile;
+    }
+    public function deleteProfile($id)
+    {
+         Profile::find($id)->delete();
     }
 }

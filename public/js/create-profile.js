@@ -18,4 +18,21 @@ $(document).ready(function () {
         var prevTab = currentTab.prev(".tab-pane");
         $('a[href="#' + prevTab.attr("id") + '"]').tab("show");
     });
+
+    Livewire.dispatch("initSearch");
+
+    Livewire.on("closeModal", function () {
+        console.log("close");
+        $("#create-profile-modal").modal("hide");
+    });
+    Livewire.on("openModal", function () {
+        console.log("open");
+        $("#create-profile-modal").modal("show");
+    });
+    Livewire.on("openProfileModal", function () {
+        $("#view-profile-modal").modal("show");
+    });
+    Livewire.on("infoProfileModal", function () {
+        $("#info-profile-modal").modal("show");
+    });
 });

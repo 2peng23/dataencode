@@ -16,7 +16,7 @@
                     <div class="form-group col-4">
                         <label for="birthYear">Birth Year</label>
                         <select wire:model="birthYear" class="form-control" id="birthYear" name="birthYear">
-                            <option value="">Select Year</option>
+                            <option value="">All Year</option>
                             <!-- Dynamic generation of options for years 1950 to 2030 -->
                             @for ($year = 1950; $year <= 2030; $year++)
                                 <option value="{{ $year }}">{{ $year }}</option>
@@ -26,8 +26,7 @@
                     <div class="form-group col-4">
                         <label for="perPage">Per Page</label>
                         <select wire:model="perPage" class="form-control" id="perPage" name="perPage">
-                            <option value="15" selected>15</option>
-                            <option value="25">25</option>
+                            <option value="25" selected>25</option>
                             <option value="50">50</option>
                             <option value="100">100</option>
                             <option value="250">250</option>

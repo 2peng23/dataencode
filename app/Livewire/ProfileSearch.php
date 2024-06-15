@@ -8,7 +8,7 @@ class ProfileSearch extends Component
 {
     public $searchQuery;
     public $birthYear;
-    public $perPage; // Set default per page
+    public $perPage = 25; // Set default per page
 
 
     protected $listeners = [
@@ -19,6 +19,7 @@ class ProfileSearch extends Component
         'searchQuery' => ['except' => ''],
         'birthYear' => ['except' => ''],
         'perPage' => ['except' => ''],
+        'page' => ['except' => ''],
     ];
 
     public function search()
@@ -27,13 +28,13 @@ class ProfileSearch extends Component
     }
     public function mount($searchQuery = null, $birthYear = null, $perPage = null)
     {
-        if (!$searchQuery) {
+        if ($searchQuery) {
             $this->searchQuery = $searchQuery;
         }
-        if (!$birthYear) {
+        if ($birthYear) {
             $this->birthYear = $birthYear;
         }
-        if (!$perPage) {
+        if ($perPage) {
             $this->perPage = $perPage;
         }
     }
