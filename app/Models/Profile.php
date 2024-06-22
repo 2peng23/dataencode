@@ -16,11 +16,13 @@ class Profile extends Model
         'birthdate',
         'birthplace',
         'registry_no',
-        'page',
+        'page_no',
         'book',
         'mother_name',
         'father_name',
         'is_married',
+        'm_date',
+        'm_place',
         // Add any other fields here if needed
     ];
 }

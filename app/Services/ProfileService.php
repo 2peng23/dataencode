@@ -54,8 +54,22 @@ class ProfileService
 
         return $profile;
     }
+    public function updateData($data, $id)
+    {
+        try {
+            $profile = Profile::find($id); // Find profile or throw an exception if not found
+            $profile->fill($data);
+            $profile->save(); // Save the updated profile data to the database
+            $success = "success";
+            return ['success' => $success];
+        } catch (\Exception $e) {
+            $error = $e->getMessage();
+            return ['error' => $error];
+        }
+    }
+
     public function deleteProfile($id)
     {
-         Profile::find($id)->delete();
+        Profile::find($id)->delete();
     }
 }

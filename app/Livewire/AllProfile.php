@@ -28,21 +28,12 @@ class AllProfile extends Component
     {
         $this->profileService = new ProfileService();
     }
-    // public function closeModal()
+    // public function openProfileModal($id)
     // {
-    //     $this->dispatch('closeModal');
+    //     $this->dispatch('openProfileModal');
+    //     $this->fetchData($this->searchQuery, $this->birthYear, $this->perPage, $this->page);
+    //     $this->dispatch('viewProfile', $id);
     // }
-    public function openModal()
-    {
-        $this->dispatch('openModal');
-        $this->fetchData($this->searchQuery, $this->birthYear, $this->perPage, $this->page);
-    }
-    public function openProfileModal($id)
-    {
-        $this->dispatch('openProfileModal');
-        $this->fetchData($this->searchQuery, $this->birthYear, $this->perPage, $this->page);
-        $this->dispatch('viewProfile', $id);
-    }
     public function infoProfileModal($id)
     {
         $this->dispatch('infoProfileModal');

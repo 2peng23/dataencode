@@ -20,11 +20,13 @@ return new class extends Migration
             $table->string('birthdate', 125);
             $table->string('birthplace', 125);
             $table->string('registry_no', 125);
-            $table->string('page', 125);
+            $table->string('page_no', 125);
             $table->string('book', 125);
             $table->string('mother_name', 125);
             $table->string('father_name', 125);
             $table->string('is_married', 10);
+            $table->string('m_date', 255)->nullable();
+            $table->string('m_place', 255)->nullable();
             $table->timestamps();
         });
     }

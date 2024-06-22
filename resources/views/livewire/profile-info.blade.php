@@ -5,7 +5,7 @@
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Profile Information</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    wire:click="closeModal"></button>
+                   ></button>
             </div>
             <div class="modal-body">
                 {{-- @php(isset($errors) ? $errors : ($errors = []))
@@ -31,7 +31,11 @@
                                 <p>Registry Number : {{ $data->registry_no }}</p>
                                 <p>Mother's Name : {{ $data->mother_name }}</p>
                                 <p>Father's Name : {{ $data->father_name }}</p>
-                                <p>Are parents married? : {{ $data->is_married == 0 ? 'No' : 'Yes' }}</p>
+                                <p>Are parents married? : {{ $data->is_married == 0 ? 'No' : 'Yes' }}</p> 
+                                @if ($data->is_married == 1)
+                                    <p>Date of Marriage: {{$data->m_date}}</p>
+                                    <p>Place of Marriage: {{$data->m_place}}</p>
+                                @endif
                             </div>
                         @endif
                     </div>

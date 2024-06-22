@@ -1,6 +1,6 @@
 <div>
     <div class="d-flex justify-content-end my-3">
-        <button class="btn btn-outline-success" wire:click="openModal">Add Profile</button>
+        <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#create-profile-modal">Add Profile</button>
     </div>
     <div class="card">
         <div class="card-body">
@@ -30,7 +30,7 @@
                                     {{ \Carbon\Carbon::parse($profile->birthdate)->format('F d, Y') }}</td>
                                 <td class="text-nowrap">{{ $profile->birthplace }}</td>
                                 <td>{{ $profile->registry_no }}</td>
-                                <td>{{ $profile->page }}</td>
+                                <td>{{ $profile->page_no }}</td>
                                 <td>{{ $profile->book }}</td>
                                 <td class="text-nowrap">{{ $profile->mother_name }}</td>
                                 <td class="text-nowrap">{{ $profile->father_name }}</td>
@@ -38,12 +38,12 @@
 
                                     {{ $profile->is_married == 0 ? 'No' : 'Yes'}}
                                 </td>
-                                <td class="d-flex">
+                                <td class="d-flex gap-1">
                                     <button class="btn btn-sm btn-primary"><i
                                             class="fa fa-eye" wire:click="infoProfileModal({{$profile->id}})"></i></button>
 
                                     <button class="btn btn-sm btn-success"><i
-                                            class="fa fa-pencil" wire:click="openProfileModal({{$profile->id}})"></i></button>
+                                            class="fa fa-pencil" data-id="{{$profile->id}}" id="edit-button"></i></button>
 
                                     <button class="btn btn-sm btn-danger"><i
                                             class="fa fa-trash" wire:click="deleteProfile({{$profile->id}})"></i></button>

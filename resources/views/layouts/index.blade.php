@@ -13,6 +13,15 @@
     <link rel="stylesheet" href="fa/css/fontawesome.css">
     <link rel="stylesheet" href="fa/css/all.css">
     @livewireStyles
+    <style>
+        .step {
+            display: none;
+        }
+
+        .step-active {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>

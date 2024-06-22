@@ -18,7 +18,9 @@ class ViewProfile extends Component
         $book,
         $mother_name,
         $father_name,
-        $is_married;
+        $is_married,
+        $m_date = null,
+        $m_place = null;
 
     public $searchQuery;
     public $birthYear;
@@ -42,6 +44,8 @@ class ViewProfile extends Component
         $this->mother_name = $this->data->mother_name;
         $this->father_name = $this->data->father_name;
         $this->is_married = $this->data->is_married;
+        $this->m_date = $this->data->m_date;
+        $this->m_place = $this->data->m_place;
     }
     public function closeModal()
     {

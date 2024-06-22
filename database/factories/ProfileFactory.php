@@ -25,11 +25,13 @@ class ProfileFactory extends Factory
             'birthdate' => $this->faker->date(),
             'birthplace' => $this->faker->city(),
             'registry_no' => $this->faker->numberBetween(10000, 99999),
-            'page' => $this->faker->numberBetween(1000, 9999),
+            'page_no' => $this->faker->numberBetween(1000, 9999),
             'book' => $this->faker->word(),
             'mother_name' => $this->faker->name('female'),
             'father_name' => $this->faker->name('male'),
             'is_married' => $this->faker->numberBetween(0, 1),
+            'm_date' => $this->faker->date(),
+            'm_place' => $this->faker->word(),
         ];
     }
 }

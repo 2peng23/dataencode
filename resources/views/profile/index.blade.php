@@ -1,7 +1,8 @@
 @extends('layouts.index')
 @section('content')
     <div>
-        @livewire('profile-form')
+        <x-create-profile/>
+        <x-edit-profile/>
         @livewire('view-profile')
         @livewire('profile-search')
         @livewire('profile-info')
